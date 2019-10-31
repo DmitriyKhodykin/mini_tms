@@ -5,7 +5,7 @@ import requests
 import json
 # pip install xlrd >=1.1
 
-token = '' # для получения - требуется зарегистрироваться на mapbox
+token = '' # Для получения - требуется зарегистрироваться на mapbox
 
 
 def get_coordinates(get_point):
@@ -22,6 +22,11 @@ def distance(pointA, pointB):
     point1 = get_coordinates(pointA)
     point2 = get_coordinates(pointB)
     profile = 'driving-traffic'
+    '''Опции:
+    - driving-traffic - Этот профиль учитывает текущие и исторические условия движения, чтобы избежать замедлений
+    - driving - Этот профиль показывает самые быстрые маршруты, предпочитая скоростные дороги, такие как шоссе
+    - walking - Этот профиль показывает кратчайший путь с использованием тротуаров и троп
+    - cycling - Этот профиль показывает маршруты, которые являются короткими и более безопасными для велосипедистов'''
     r = requests.get(
         f'https://api.mapbox.com/directions/v5/mapbox/{profile}/{point1};{point2}?access_token={token}').text
     output = json.loads(r)
