@@ -3,7 +3,6 @@
 
 import requests
 import json
-import pandas as pd
 # pip install xlrd >=1.1
 
 token = '' # для получения - требуется зарегистрироваться на mapbox
