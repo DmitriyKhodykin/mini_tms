@@ -9,6 +9,8 @@ token = '' # Для получения - требуется зарегистри
 
 
 def get_distance_mapbox(pointA, pointB):
+    '''Возвращает расстояние в киллометрах между пунктами А и Б'''
+
     def get_coordinates_mapbox(get_point):
         '''Возвращает координаты в формате: [Долгота{longitude}, Широта{latitude}], например, 38.05,41.06'''
         point = str(get_point)
@@ -17,9 +19,7 @@ def get_distance_mapbox(pointA, pointB):
         geo_point = json.loads(r)
         return str(geo_point['features'][0]['geometry']['coordinates'])[1:-1].replace(' ', '')
 
-
     def distance_mapbox():
-        '''Возвращает расстояние в киллометрах между пунктами А и Б'''
         point1 = get_coordinates_mapbox(pointA)
         point2 = get_coordinates_mapbox(pointB)
         profile = 'driving-traffic'
@@ -33,5 +33,6 @@ def get_distance_mapbox(pointA, pointB):
         output = json.loads(r)
         return int(output['routes'][0]['distance']) // 1000
     return distance_mapbox()
+
 
 print(get_distance_mapbox('Москва Россия', 'Воронеж Россия'))
