@@ -9,10 +9,10 @@ token = '' # Для получения - требуется зарегистри
 
 
 def get_distance_mapbox(pointA, pointB):
-    '''Возвращает расстояние в киллометрах между пунктами А и Б'''
+    """Возвращает расстояние в киллометрах между пунктами А и Б"""
 
     def get_coordinates_mapbox(get_point):
-        '''Возвращает координаты в формате: [Долгота{longitude}, Широта{latitude}], например, 38.05,41.06'''
+        """Возвращает координаты в формате: [Долгота{longitude}, Широта{latitude}], например, 38.05,41.06"""
         point = str(get_point)
         r = requests.get(
             f'https://api.mapbox.com/geocoding/v5/mapbox.places/{point}.json?limit=2&access_token={token}').text
@@ -20,6 +20,7 @@ def get_distance_mapbox(pointA, pointB):
         return str(geo_point['features'][0]['geometry']['coordinates'])[1:-1].replace(' ', '')
 
     def distance_mapbox():
+        """Возвращает дистанцию в км"""
         point1 = get_coordinates_mapbox(pointA)
         point2 = get_coordinates_mapbox(pointB)
         profile = 'driving-traffic'
