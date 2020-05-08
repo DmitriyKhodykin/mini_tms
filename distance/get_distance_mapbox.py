@@ -28,7 +28,7 @@ class GetDistanceMapBox:
         point1 = self.get_coordinates_mapbox(self.point_a)
         point2 = self.get_coordinates_mapbox(self.point_b)
         profile = 'driving-traffic'
-        '''Опции:
+        '''Options:
         - driving-traffic - Historical traffic conditions to avoid slowdowns
         - driving - The fastest routes, preferring express roads such as highways
         - walking - Shows the shortest path using sidewalks and trails
