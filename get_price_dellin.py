@@ -139,3 +139,15 @@ class GetPrice:
         x.add_row(["Прайс с НДС", price_dellin['data']['price']])
 
         return x
+
+
+if __name__ == '__main__':
+    price_delivery = GetPrice().get_ltl_price(
+        'Воронежская', 'Воронеж', 'Сибиряков',
+        'Белгородская', 'Алексеевка', 'Большевиков',
+        100, 2
+    )
+
+    print(
+        price_delivery
+    )
