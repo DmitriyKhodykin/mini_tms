@@ -7,7 +7,7 @@ import json
 import auth
 
 
-class DataLoader:
+class DirLoader:
     """Загружает справочники городов и улиц
     через API dllin"""
 
@@ -20,6 +20,7 @@ class DataLoader:
     }}'''
 
     def cities_loader(self):
+        """Загружает справочник городов"""
         response_cities = requests.request(
             'POST', auth.url_cities,
             headers=self.headers, data=self.payload_link
@@ -32,6 +33,7 @@ class DataLoader:
         print('Выполнено')
 
     def streets_loader(self):
+        """Загружает справочник улиц"""
         response_str = requests.request(
             'POST', auth.url_str,
             headers=self.headers, data=self.payload_link
@@ -42,3 +44,9 @@ class DataLoader:
         print('Сохранение каталога улиц')
         streets.to_csv('streets.csv')
         print('Выполнено')
+
+
+if __name__ == '__main__':
+
+    DirLoader().cities_loader()
+    DirLoader().streets_loader()
