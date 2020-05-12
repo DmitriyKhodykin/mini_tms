@@ -10,18 +10,6 @@ import datetime
 
 
 class GetPrice:
-    """
-    GetPrice(reg_a, city_a, street_a, reg_b, city_b, street_b, weight, count):
-    - reg_a = регион отправления*: <Воронежская>,
-    - city_a = город отправления*: <Воронеж>,
-    - street_a = улица отправления: <Сибиряков>,
-    - reg_b = регион доставки*: <Воронежская>,
-    - city_b = город доставки*: <Воронеж>,
-    - street_b = улица доставки: <Остужева>
-    * адреса доставки - в пределах РФ (Кроме г.Калининграда),
-    - weight = вес самого тяжелого грузового места в кг,
-    - count = количество грузовых мест
-    """
 
     # Defines content type
     headers = {
@@ -51,7 +39,16 @@ class GetPrice:
 
     def get_ltl_price(self, reg_a, city_a, street_a,
                       reg_b, city_b, street_b, weight, count):
-        """Возвращает прайс LTL-доставки автотранспортом"""
+        """GetPrice(reg_a, city_a, street_a, reg_b, city_b, street_b, weight, count):
+        - reg_a = регион отправления*: <Воронежская>,
+        - city_a = город отправления*: <Воронеж>,
+        - street_a = улица отправления: <Сибиряков>,
+        - reg_b = регион доставки*: <Воронежская>,
+        - city_b = город доставки*: <Воронеж>,
+        - street_b = улица доставки: <Остужева>
+        * адреса доставки - в пределах РФ (Кроме г.Калининграда),
+        - weight = вес самого тяжелого грузового места в кг,
+        - count = количество грузовых мест"""
 
         derival_street = self.get_street_id(reg_a, city_a, street_a)
         arrival_street = self.get_street_id(reg_b, city_b, street_b)
