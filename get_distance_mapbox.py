@@ -1,5 +1,6 @@
-# Module for get distance between points A and B
-# MapBox Api https://docs.mapbox.com/api/
+# Модуль для получения расстояния между пунктами А и Б
+# по данным бесплатного сервиса MapBox
+# Api https://docs.mapbox.com/api/
 
 import requests
 import json
@@ -7,7 +8,9 @@ import json
 
 
 class GetDistanceMapBox:
-    """Get distance between points A and B"""
+    """GetDistanceMapBox(point_a, point_b)
+    - point_a - отправная точка,
+    - point_b - точка доставки"""
 
     token = ''  # MapBox Token
 
@@ -24,15 +27,15 @@ class GetDistanceMapBox:
         return str(geo_point['features'][0]['geometry']['coordinates'])[1:-1].replace(' ', '')
 
     def distance_mapbox(self):
-        """Get distance measured in km"""
+        """Получение расстояния между пунктами А и Б в км"""
         point1 = self.get_coordinates_mapbox(self.point_a)
         point2 = self.get_coordinates_mapbox(self.point_b)
         profile = 'driving-traffic'
-        '''Options:
-        - driving-traffic - Historical traffic conditions to avoid slowdowns
-        - driving - The fastest routes, preferring express roads such as highways
-        - walking - Shows the shortest path using sidewalks and trails
-        - cycling - Shows routes that are shorter and safer for cyclists'''
+        # Опции метода:
+        # - driving-traffic - Исторический трафик для автомобиля
+        # - driving - Самый быстрый путь для автомобиля
+        # - walking - Пешеходный маршрут
+        # - cycling - Веломаршрут
         r = requests.get(
             f'https://api.mapbox.com/directions/v5/mapbox/{profile}/{point1};{point2}?access_token={self.token}').text
         output = json.loads(r)
